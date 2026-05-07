@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tim Niemeijer</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+  :root {
+    --bg: #111111;
+    --text: #e8e8e8;
+    --muted: #a4a4a4;
+    --accent: #dedede;
+    --border: #cccccc;
+    --card: #212121;
+    --icon: #555;
+    --icon-hover: #efefef;
+  }
+
+  body.light {
+    --bg: #f3f3f3;
+    --text: #111111;
+    --muted: #555;
+    --accent: #000;
+    --border: #ddd;
+    --card: #ffffff;
+    --icon: #666;
+    --icon-hover: #000;
+  }
+
+  body {
+    font-family: sans-serif;
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 2.2rem;
+  }
+
+  nav {
+    margin: 30px 0;
+    text-align: center;
+  }
+
+  nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  nav a:hover {
+    color: var(--accent);
+  }
+
+  h2 {
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .socials a {
+    margin-right: 15px;
+    font-size: 1.4rem;
+    color: var(--icon);
+    text-decoration: none;
+  }
+
+  .socials a:hover {
+    color: var(--icon-hover);
+  }
+
+  .card {
+    background-color: var(--card);
+    padding: 30px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s;
+  }
+
+  .card a {
+    color: var(--icon);
+    text-decoration: none;
+  }
+
+  .card a:hover {
+    color: var(--accent);
+  }
+
+  hr {
+    border: 0; 
+    border-top: 1px solid #ccc; 
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  /* Theme toggle button */
+  .theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--card);
+    color: var(--text);
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: background-color 0.3s;
+  }
+</style>
+
+</head>
+
+<body>
+ <button class="theme-toggle" id="themeToggle">🌙</button>
+  <div class="container">
+
+    <!-- Header -->
+    <header>
+      <!-- <div class="profile-pic">
+        <img src="profile.jpg" alt="Profile picture">
+      </div>
+    -->
+      <div>
+        <h1>Tim Niemeijer</h1>
+        <h3 >Bio</h3>
+        <hr>
+        <p style="text-align: left;">
+        I am a PhD student in the System Genetics group at the University Medical Center Groningen (UMCG), supervised by Joeri van der Velde and Morris A. Swertz. My work focuses on developing and applying machine-learning methods to improve genome diagnostics, with a particular interest in rare disease variant interpretation.
+        </p>
+        <div class="socials">
+          <a href="https://github.com/Timniem"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/tim-niemeijer-98433b373/"><i class="fab fa-linkedin"></i></a>
+          <a href="mailto:t.niemeijer@umcg.nl"><i class="fas fa-envelope"></i></a>
+        </div>
+        <hr>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#activities">Other activities</a>
+
+    </nav>
+
+    <!-- Research -->
+    <section id="research">
+      <h2>Research</h2>
+      <p>
+        My research focuses on the application of explainable artificial intelligence to genome diagnostics. I am particularly interested in variant interpretation, transcriptomics, and protein effect modeling, integrating multi-omics data to better understand the molecular basis of rare diseases.
+      </p>
+    </section>
+
+    <!-- Publications -->
+    <section id="publications">
+      <h2>Publications</h2>
+      
+      <div class="card">
+        <a href="https://doi.org/10.1093/nargab/lqag016">Article</a> 
+        ·
+        <a href="https://github.com/Timniem/rna_outlier_pipeline">Code </a>
+        <hr>
+        <strong>Accelerating rare disease diagnostics by linking DNA and RNA through an explainable and interactive RNA-guided workflow</strong><br>
+        Willem T K Maassen, Charlotte C E T Pape, Carlos G Urzua-Traslavina, Tim Niemeijer, Tijs van Lieshout, Margriet van der Molen, Lennart F Johansson, Kasper J van der Velde, Lude Franke, Mariëlle E van Gijn, Morris A Swertz<br>
+        <hr>
+        <em> NAR Genomics and Bioinformatics, Volume 8, Issue 1, March 2026</em><br>
+        
+      </div>
+
+      <div class="card">
+        <a href="https://www.medrxiv.org/content/10.1101/2025.11.25.25340947v1.full-text">Preprint </a>  
+        ·
+        <a href="https://github.com/molgenis/dave">Code </a>
+        ·
+        <a href="https://github.com/molgenis/dave_streamlit">Code interactive Dashboard</a>
+        
+        <hr>
+        <strong>DAVE: how to use explainable AI to interpret missense variants for genome diagnostics based on functional protein modeling</strong><br>
+        Tim Niemeijer, René Mulder, Helga Westers, Jan D.H. Jongbloed, Bart Charbon, Birgit Sikkema-Raddatz, Lennart F. Johansson, Marielle E. van Gijn, Cleo C. van Diemen, Dennis Hendriksen, Kristin M. Abbott, W.T. Kars Maassen, Morris A. Swertz, K. Joeri van der Velde<br>
+        <hr>
+        <em>medRxiv, November 27, 2025</em><br>
+        
+      </div>
+    </section>
+
+    <!-- Other stuff -->
+    <section id="activities">
+      <h2>Other activities</h2>
+      <div class="card">
+        Dutch Society for Human Genetics Annual meeting 
+        <hr>
+        Talk in parallel session: <strong>Cautionary tale when interpreting WGS results: mobile element insertion in FUCA1 instead of suspected deletion or translocation</strong><br>
+        <hr>
+        <em>
+            Papendal, Arnhem, the Netherlands, September 16, 2025</em><br>
+
+      </div>
+
+    </section>
+
+    <footer>
+      © 2026 TimNiem
+    </footer>
+
+  </div>
+
+<script>
+  const toggle = document.getElementById("themeToggle");
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme === "light") {
+    document.body.classList.add("light");
+    toggle.textContent = "☀️";
+  }
+
+  toggle.addEventListener("click", () => {
+    document.body.classList.toggle("light");
+    const isLight = document.body.classList.contains("light");
+    toggle.textContent = isLight ? "☀️" : "🌙";
+    localStorage.setItem("theme", isLight ? "light" : "dark");
+  });
+</script>
+</body>
+</html>
