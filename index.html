@@ -6,281 +6,591 @@
   <title>Tim Niemeijer</title>
 
   <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@400;600&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-  :root {
-    --bg: #111111;
-    --text: #e8e8e8;
-    --muted: #a4a4a4;
-    --accent: #dedede;
-    --border: #cccccc;
-    --card: #212121;
-    --icon: #555;
-    --icon-hover: #efefef;
-  }
+    :root {
+      --bg: #000000;
+      --text: #e8e8e8;
+      --muted: #a4a4a4;
+      --accent: #11e59f;
+      --border: #333;
+      --card: #31313138;
+      --icon: #888;
+      --icon-hover: #11e59f;
+      --tab-active: #11e59f;
+      --tab-inactive: #555;
+      --card-hover: #31313155;
+    }
 
-  body.light {
-    --bg: #f3f3f3;
-    --text: #111111;
-    --muted: #555;
-    --accent: #000;
-    --border: #ddd;
-    --card: #ffffff;
-    --icon: #666;
-    --icon-hover: #000;
-  }
+    body.light {
+      --bg: #fffcf4;
+      --text: #111111;
+      --muted: #666;
+      --accent: #000000;
+      --border: #ddd;
+      --card: #ffffff38;
+      --icon: #666;
+      --icon-hover: #bb590d;
+      --tab-active: #bb590d;
+      --tab-inactive: #999;
+      --card-hover: #bb580d10;
+    }
 
-  body {
-    font-family: sans-serif;
-    margin: 0;
-    background-color: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    transition: background-color 0.3s, color 0.3s;
-  }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+    }
 
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 40px 20px;
-  }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
 
-  header {
-    text-align: center;
-    margin-bottom: 40px;
-  }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+      position: relative;
+    }
 
-  h1 {
-    margin: 0;
-    font-size: 2.2rem;
-  }
+    h1 {
+      margin: 0;
+      font-size: 2.2rem;
+      font-weight: 600;
+    }
 
-  nav {
-    margin: 30px 0;
-    text-align: center;
-  }
+    .ink-animation {
+      width: 100%;
+      height: 180px;
+      position: relative;
+      cursor: pointer;
+    }
 
-  nav a {
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: 600;
-    color: var(--muted);
-  }
+    #particleCanvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
 
-  nav a:hover {
-    color: var(--accent);
-  }
+    .ink-animation::after {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
 
-  h2 {
-    border-bottom: 2px solid var(--border);
-    padding-bottom: 5px;
-    margin-bottom: 20px;
-    text-align: center;
-  }
+    /* Tab System */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
 
-  .socials a {
-    margin-right: 15px;
-    font-size: 1.4rem;
-    color: var(--icon);
-    text-decoration: none;
-  }
+    .tab {
+      padding: 10px 20px;
+      cursor: pointer;
+      color: var(--tab-inactive);
+      border-bottom: 3px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
 
-  .socials a:hover {
-    color: var(--icon-hover);
-  }
+    .tab.active {
+      color: var(--tab-active);
+      border-bottom-color: var(--tab-active);
+    }
 
-  .card {
-    background-color: var(--card);
-    padding: 30px;
-    border-radius: 30px;
-    margin-bottom: 20px;
-    transition: background-color 0.3s;
-  }
+    .tab:hover {
+      color: var(--tab-active);
+    }
 
-  .card a {
-    color: var(--icon);
-    text-decoration: none;
-  }
+    .tab-content {
+      display: none;
+    }
 
-  .card a:hover {
-    color: var(--accent);
-  }
+    .tab-content.active {
+      display: block;
+    }
 
-  hr {
-    border: 0; 
-    border-top: 1px solid #ccc; 
-  }
+    .socials {
+      margin: 20px 0;
+      text-align: center;
+    }
 
-  footer {
-    text-align: center;
-    padding: 20px;
-    font-size: 0.9rem;
-    color: var(--muted);
-  }
+    .socials a {
+      margin: 0 15px;
+      font-size: 1.4rem;
+      color: var(--icon);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
 
-  /* Theme toggle button */
-  .theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: var(--card);
-    color: var(--text);
-    border: none;
-    border-radius: 50%;
-    width: 44px;
-    height: 44px;
-    cursor: pointer;
-    font-size: 1.2rem;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    transition: background-color 0.3s;
-  }
-</style>
+    .socials a:hover {
+      color: var(--icon-hover);
+    }
 
+    .card {
+      background-color: var(--card);
+      padding: 25px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      background-color: var(--card-hover);
+    }
+
+    .card a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .card a:hover {
+      text-decoration: underline;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid var(--border);
+      margin: 15px 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 40px;
+    }
+
+    /* Theme toggle button */
+    .theme-toggle {
+      position: fixed;
+      border: none;
+      top: 20px;
+      right: 20px;
+      background: none;
+      color: var(--text);
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: background-color 0.4s, color 0.3s;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .theme-toggle:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    .theme-toggle svg {
+      pointer-events: none;
+      width: 20px;
+      height: 20px;
+    }
+
+    .sun-icon, .moon-icon {
+      position: absolute;
+      transition: opacity 0.3s;
+    }
+  </style>
 </head>
 
 <body>
- <button class="theme-toggle" id="themeToggle">🌙</button>
-  <div class="container">
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" id="themeToggle">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun-icon sun-icon">
+      <circle cx="12" cy="12" r="4"/>
+      <path d="M12 2v2"/>
+      <path d="M12 20v2"/>
+      <path d="m4.93 4.93 1.41 1.41"/>
+      <path d="m17.66 17.66 1.41 1.41"/>
+      <path d="M2 12h2"/>
+      <path d="M20 12h2"/>
+      <path d="m6.34 17.66-1.41 1.41"/>
+      <path d="m19.07 4.93-1.41 1.41"/>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon-icon moon-icon" style="display: none;">
+      <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/>
+    </svg>
+  </button>
 
-    <!-- Header -->
+  <div class="container">
+    <!-- Header with Ink Animation -->
     <header>
-      <!-- <div class="profile-pic">
-        <img src="profile.jpg" alt="Profile picture">
+      <div class="ink-animation">
+        <canvas id="particleCanvas"></canvas>
       </div>
-    -->
-      <div>
-        <h1>Tim Niemeijer</h1>
-        <h3 >Bio</h3>
-        <hr>
-        <p style="text-align: left;">
-        I am a PhD student in the System Genetics group at the University Medical Center Groningen (UMCG), supervised by Dr. K. Joeri van der Velde and Prof. Dr. Morris A. Swertz. My work focuses on developing and applying machine-learning methods to improve genome diagnostics, with a particular interest in rare disease variant interpretation.
-        </p>
-        <div class="socials">
-          <a href="https://github.com/Timniem"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/tim-niemeijer-98433b373/"><i class="fab fa-linkedin"></i></a>
-          <a href="mailto:t.niemeijer@umcg.nl"><i class="fas fa-envelope"></i></a>
-          <a href="https://orcid.org/0009-0004-7786-3362"><i class="fab fa-orcid"></i></a>
-        </div>
-        <hr>
+      <div class="socials">
+        <a href="https://github.com/Timniem"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/tim-niemeijer-98433b373/"><i class="fab fa-linkedin"></i></a>
+        <a href="mailto:t.niemeijer@umcg.nl"><i class="fas fa-envelope"></i></a>
+        <a href="https://orcid.org/0009-0004-7786-3362"><i class="fab fa-orcid"></i></a>
       </div>
     </header>
 
-    <!-- Navigation -->
-    <nav>
-      <a href="#research">Research</a>
-      <br>·<br>
-      <a href="#publications">Publications</a>
-      <br>·<br>
-      <a href="#activities">Other activities</a>
-    
+    <!-- Tabs -->
+    <div class="tabs">
+      <div class="tab active" data-tab="bio">Bio</div>
+      <div class="tab" data-tab="research">Research</div>
+      <div class="tab" data-tab="publications">Publications</div>
+      <div class="tab" data-tab="activities">Activities</div>
+    </div>
 
-    </nav>
-
-    <!-- Research -->
-    <section id="research">
-      <h2>Research</h2>
-      <p>
-        My research focuses on the application of explainable artificial intelligence to genome diagnostics. I am particularly interested in variant interpretation, transcriptomics, and protein effect modeling, integrating multi-omics data to better understand the molecular basis of rare diseases.
+    <!-- Tab Content: Bio -->
+    <div class="tab-content active" id="bio">
+      <p style="text-align: left; padding: 20px;">
+        I am a PhD student in the System Genetics group at the University Medical Center Groningen (UMCG), supervised by Dr. K. Joeri van der Velde and Prof. Dr. Morris A. Swertz. My work focuses on developing and applying machine-learning methods to improve genome diagnostics, with a particular interest in rare disease variant interpretation.
       </p>
-    </section>
+    </div>
 
-    <!-- Publications -->
-    <section id="publications">
-      <h2>Publications</h2>
+    <!-- Tab Content: Research -->
+    <div class="tab-content" id="research">
+      <p style="text-align: left; padding: 20px;">
+        My research focuses on the application of explainable artificial intelligence (XAI) for the interpretation of the effect of genetic variants. I am particularly interested in non-coding variantion, transcriptomics, and protein effect modeling, and integrating multi-omics data to better understand the molecular basis of rare diseases.
+      </p>
+    </div>
 
-
+    <!-- Tab Content: Publications -->
+    <div class="tab-content" id="publications">
       <div class="card">
-        <a href="https://doi.org/10.3389/fimmu.2026.1829883">Article</a> 
+        <a href="https://doi.org/10.3389/fimmu.2026.1829883">Article</a>
         ·
-        <a href="https://zenodo.org/records/18740581">Code </a>
+        <a href="https://zenodo.org/records/18740581">Code</a>
         <hr>
         <strong>A multidisciplinary RNA-guided approach to complement genomic analysis of unsolved patients with an inborn error of immunity</strong><br>
         Maassen WTK, Pape LCET, Niemeijer T, Heijink A-M, Meems-Veldhuis MT, Boerrigter DJ, van der Vries G, Westers H, Johansson LF, van der Velde KJ, Swertz MA, Franke L, Legger GE, Lambeck AJA, Rutgers A, Jonkers IH, van Gijn ME and Zonneveld-Huijssoon E<br>
         <hr>
-        <em> Frontiers in Immunology, Sec. Primary Immunodeficiencies, Volume 17 - 2026</em><br>
-        
+        <em>Frontiers in Immunology, Sec. Primary Immunodeficiencies, Volume 17 - 2026</em>
       </div>
-      
+
       <div class="card">
-        <a href="https://doi.org/10.1093/nargab/lqag016">Article</a> 
+        <a href="https://doi.org/10.1093/nargab/lqag016">Article</a>
         ·
-        <a href="https://github.com/Timniem/rna_outlier_pipeline">Code </a>
+        <a href="https://github.com/Timniem/rna_outlier_pipeline">Code</a>
         <hr>
         <strong>Accelerating rare disease diagnostics by linking DNA and RNA through an explainable and interactive RNA-guided workflow</strong><br>
         Willem T K Maassen, Charlotte C E T Pape, Carlos G Urzua-Traslavina, Tim Niemeijer, Tijs van Lieshout, Margriet van der Molen, Lennart F Johansson, Kasper J van der Velde, Lude Franke, Mariëlle E van Gijn, Morris A Swertz<br>
         <hr>
-        <em> NAR Genomics and Bioinformatics, Volume 8, Issue 1, March 2026</em><br>
-        
+        <em>NAR Genomics and Bioinformatics, Volume 8, Issue 1, March 2026</em>
       </div>
 
       <div class="card">
-        <a href="https://www.medrxiv.org/content/10.1101/2025.11.25.25340947v1.full-text">Preprint </a>  
+        <a href="https://www.medrxiv.org/content/10.1101/2025.11.25.25340947v1.full-text">Preprint</a>
         ·
-        <a href="https://github.com/molgenis/dave">Code </a>
+        <a href="https://github.com/molgenis/dave">Code</a>
         ·
-        <a href="https://github.com/molgenis/dave_streamlit">Code interactive Dashboard</a>
-        
+        <a href="https://github.com/molgenis/dave_streamlit">Code (Dashboard)</a>
         <hr>
         <strong>DAVE: how to use explainable AI to interpret missense variants for genome diagnostics based on functional protein modeling</strong><br>
         Tim Niemeijer, René Mulder, Helga Westers, Jan D.H. Jongbloed, Bart Charbon, Birgit Sikkema-Raddatz, Lennart F. Johansson, Marielle E. van Gijn, Cleo C. van Diemen, Dennis Hendriksen, Kristin M. Abbott, W.T. Kars Maassen, Morris A. Swertz, K. Joeri van der Velde<br>
         <hr>
-        <em>medRxiv, November 27, 2025</em><br>
-        
+        <em>medRxiv, November 27, 2025</em>
       </div>
-    </section>
+    </div>
 
-    <!-- Other stuff -->
-    <section id="activities">
-      <h2>Other activities</h2>
+    <!-- Tab Content: Activities -->
+    <div class="tab-content" id="activities">
       <div class="card">
-
         <a href="resources/DAVE_ESHG_PRES.pdf" target="_blank">Poster</a><br>
         <hr>
-
-        Poster (P15.042): <strong>DAVE: how to use explainable AI to interpret missense variants for genome diagnostics based on functional protein modeling </strong><br>
+        <strong>Poster (P15.042): DAVE: how to use explainable AI to interpret missense variants for genome diagnostics based on functional protein modeling</strong><br>
         <hr>
-        <em>
-          European society of Human Genetics <br>
-          Gothenburg, Sweden, June 15, 2026</em><br>
-
+        <em>European Society of Human Genetics<br>Gothenburg, Sweden, June 15, 2026</em>
       </div>
 
       <div class="card">
-        
         <hr>
-        Talk in parallel session: <strong>Cautionary tale when interpreting WGS results: mobile element insertion in FUCA1 instead of suspected deletion or translocation</strong><br>
+        <strong>Talk: Cautionary tale when interpreting WGS results: mobile element insertion in FUCA1 instead of suspected deletion or translocation</strong><br>
         <hr>
-        <em>
-          Dutch Society for Human Genetics Annual meeting <br>
-          Papendal, Arnhem, the Netherlands, September 16, 2025</em><br>
-
+        <em>Dutch Society for Human Genetics Annual Meeting<br>Papendal, Arnhem, the Netherlands, September 16, 2025</em>
       </div>
-
-    </section>
+    </div>
 
     <footer>
-      © 2026 TimNiem
+      © 2026 Tim Niemeijer
     </footer>
-
   </div>
 
-<script>
-  const toggle = document.getElementById("themeToggle");
-  const savedTheme = localStorage.getItem("theme");
+  <script>
+    // Theme Toggle
+    const toggle = document.getElementById("themeToggle");
+    const sunIcon = toggle.querySelector(".sun-icon");
+    const moonIcon = toggle.querySelector(".moon-icon");
+    const savedTheme = localStorage.getItem("theme");
 
-  if (savedTheme === "light") {
-    document.body.classList.add("light");
-    toggle.textContent = "☀️";
-  }
+    if (savedTheme === "light") {
+      document.body.classList.add("light");
+      sunIcon.style.display = "block";
+      moonIcon.style.display = "none";
+    }
+    if (savedTheme === "dark") {
+      document.body.classList.add("dark");
+      sunIcon.style.display = "none";
+      moonIcon.style.display = "block";
+    }
 
-  toggle.addEventListener("click", () => {
-    document.body.classList.toggle("light");
-    const isLight = document.body.classList.contains("light");
-    toggle.textContent = isLight ? "☀️" : "🌙";
-    localStorage.setItem("theme", isLight ? "light" : "dark");
-  });
-</script>
+    toggle.addEventListener("click", () => {
+      document.body.classList.toggle("light");
+      const isLight = document.body.classList.contains("light");
+      if (isLight) {
+        sunIcon.style.display = "block";
+        moonIcon.style.display = "none";
+      } else {
+        sunIcon.style.display = "none";
+        moonIcon.style.display = "block";
+      }
+      localStorage.setItem("theme", isLight ? "light" : "dark");
+    });
+
+    // Tab System
+    const tabs = document.querySelectorAll(".tab");
+    const tabContents = document.querySelectorAll(".tab-content");
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        tabs.forEach(t => t.classList.remove("active"));
+        tabContents.forEach(c => c.classList.remove("active"));
+
+        tab.classList.add("active");
+        const tabId = tab.getAttribute("data-tab");
+        document.getElementById(tabId).classList.add("active");
+      });
+    });
+
+    const canvas = document.getElementById("particleCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let particles = [];
+    let targets = [];
+    let mode = "name";
+    let time = 0;
+
+    function resizeCanvas() {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+
+      canvas.width = rect.width * dpr;
+      canvas.height = 180 * dpr;
+
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+
+        this.vx = 0;
+        this.vy = 0;
+
+        this.tx = x;
+        this.ty = y;
+
+        this.size = 0.8 + Math.random() * 1.4;
+        this.phase = Math.random() * Math.PI * 3;
+      }
+
+      update() {
+        const dx = this.tx - this.x;
+        const dy = this.ty - this.y;
+
+        this.vx += dx * 0.0025;
+        this.vy += dy * 0.0025;
+
+        this.vx *= 0.92;
+        this.vy *= 0.92;
+
+        this.x += this.vx;
+        this.y += this.vy;
+      }
+
+      draw() {
+        const accent = getComputedStyle(document.body)
+          .getPropertyValue('--accent')
+          .trim();
+
+        const pulse = Math.sin(time * 0.02 + this.phase) * 0.8;
+
+        ctx.beginPath();
+        ctx.fillStyle = accent;
+
+        ctx.arc(
+          this.x,
+          this.y + pulse,
+          this.size,
+          0,
+          Math.PI * 2
+        );
+
+        ctx.fill();
+      }
+    }
+
+    function createNameTargets() {
+      const off = document.createElement("canvas");
+
+      const canvasWidth = canvas.width / (window.devicePixelRatio || 1);
+      const canvasHeight = canvas.height / (window.devicePixelRatio || 1);
+
+      off.width = canvasWidth;
+      off.height = canvasHeight;
+
+      const octx = off.getContext("2d");
+
+      octx.fillStyle = "white";
+      octx.textAlign = "center";
+      octx.textBaseline = "middle";
+      octx.font = `${canvasWidth * 0.1}px Montserrat`;
+
+      octx.fillText(
+        "Tim Niemeijer",
+        canvasWidth / 2,
+        canvasHeight / 2
+      );
+
+      const data = octx.getImageData(
+        0,
+        0,
+        off.width,
+        off.height
+      ).data;
+
+      targets = [];
+
+      for (let y = 0; y < off.height; y += 4) {
+        for (let x = 0; x < off.width; x += 4) {
+          const index = (y * off.width + x) * 4;
+          if (data[index + 3] > 100) {
+            targets.push({
+              x: x,
+              y: y
+            });
+          }
+        }
+      }
+    }
+
+    function createHelixTargets() {
+      targets = [];
+
+      const canvasWidth = canvas.width / (window.devicePixelRatio || 1);
+      const canvasHeight = canvas.height / (window.devicePixelRatio || 1);
+
+      const centerY = canvasHeight * 0.5;
+      const startX = canvasWidth * 0.12;
+      const width = canvasWidth * 1;
+
+      for (let i = 10; i < 400; i++) {
+        const t = i / 450;
+
+        const x = startX + t * width;
+        const angle = t * Math.PI * 8;
+
+        const yA = centerY + Math.sin(angle) * 30;
+        const yB = centerY - Math.sin(angle) * 30;
+
+        targets.push({
+          x,
+          y: yA
+        });
+
+        targets.push({
+          x,
+          y: yB
+        });
+
+        if (i % 12 === 0) {
+          for (let s = 0; s <= 1; s += 0.2) {
+            targets.push({
+              x,
+              y: yA * (1 - s) + yB * s
+            });
+          }
+        }
+      }
+    }
+
+    function assignTargets() {
+      particles.forEach((particle, i) => {
+        const target = targets[i % targets.length];
+        particle.tx = target.x;
+        particle.ty = target.y;
+      });
+    }
+
+    async function initializeParticles() {
+      await document.fonts.ready;
+
+      createNameTargets();
+
+      for (let i = 0; i < Math.max(800, targets.length); i++) {
+        particles.push(
+          new Particle(
+            Math.random() * 200,
+            Math.random() * 180
+          )
+        );
+      }
+
+      assignTargets();
+      animate();
+    }
+
+    initializeParticles();
+
+    canvas.addEventListener("click", () => {
+      particles.forEach(p => {
+        p.vx += (Math.random() - 0.1) * 10;
+        p.vy += (Math.random() - 0.1) * 10;
+      });
+
+      if (mode === "name") {
+        mode = "helix";
+        createHelixTargets();
+      } else {
+        mode = "name";
+        createNameTargets();
+      }
+
+      assignTargets();
+    });
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      time++;
+
+      ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+    }
+
+    animate();
+  </script>
 </body>
 </html>
