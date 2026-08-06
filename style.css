@@ -1,0 +1,207 @@
+:root {
+    --bg: #000000;
+    --text: #e8e8e8;
+    --muted: #a4a4a4;
+    --accent: #11e59f;
+    --border: #333;
+    --card: #31313138;
+    --icon: #888;
+    --icon-hover: #11e59f;
+    --tab-active: #11e59f;
+    --tab-inactive: #555;
+    --card-hover: #46464655;
+}
+
+body.light {
+    --bg: #fffcf4;
+    --text: #111111;
+    --muted: #666;
+    --accent: #000000;
+    --border: #ddd;
+    --card: #ffffff38;
+    --icon: #666;
+    --icon-hover: #bb590d;
+    --tab-active: #bb590d;
+    --tab-inactive: #999;
+    --card-hover: #bb580d10;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 600;
+}
+
+.ink-animation {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    cursor: pointer;
+}
+
+#particleCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.ink-animation::after {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+
+/* Tab System */
+.tabs {
+    display: flex;
+    overflow-x: auto;
+    justify-content: center;
+    border-bottom: 1px solid var(--tab-active);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.tab {
+    flex-shrink: 0;
+    padding: 5px 20px;
+}
+
+.tab {
+    padding: 0px 5px;
+    cursor: pointer;
+    color: var(--tab-inactive);
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.tab.active {
+    color: var(--tab-active);
+    border-bottom-color: var(--tab-active);
+}
+
+.tab:hover {
+    color: var(--tab-active);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.socials {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.socials a {
+    margin: 0 15px;
+    font-size: 1.4rem;
+    color: var(--icon);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.socials a:hover {
+    color: var(--icon-hover);
+}
+
+.card {
+    background-color: var(--card);
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    background-color: var(--card-hover);
+}
+
+.card a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.card a:hover {
+    text-decoration: underline;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid var(--border);
+    margin: 15px 0;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-top: 40px;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    position: fixed;
+    border: none;
+    top: 20px;
+    right: 20px;
+    background: none;
+    color: var(--text);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.4s, color 0.3s;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle:hover {
+    background: var(--accent);
+    color: white;
+}
+
+.theme-toggle svg {
+    pointer-events: none;
+    width: 20px;
+    height: 20px;
+}
+
+.sun-icon, .moon-icon {
+    position: absolute;
+    transition: opacity 0.3s;
+}
